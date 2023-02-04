@@ -13,15 +13,23 @@ function createWakeUpTimeElement(time, cycle) {
     elm.style.color = colors[cycle];
     return elm;
 }
-function handleOnClickEvent() {
+function handleOnClick() {
     let output = document.querySelector(".output");
     output.style.display = "block";
 
     let hours = document.getElementById("hours");
     hours.innerHTML = "";
 
+    let hh = document.getElementById("hh").value;
+    let mm = document.getElementById("mm").value;
+    let ampm = document.getElementById("ampm").value;
+
+    hh = ampm === "PM" ? Number.parseInt(hh)+12 : hh;
+
     let now = new Date();
-    now.setMinutes(now.getMinutes() + 14);
+    now.setHours(hh);
+    now.setMinutes(mm);
+
 
     for (let i = 1; i <= 6; ++i) {
         now.setMinutes(now.getMinutes() + 90);
